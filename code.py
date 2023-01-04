@@ -1,7 +1,6 @@
 import discord, random, re, os
 from retar import aliv
 
-
 intents = discord.Intents.all()
 client = discord.Client(intents=intents)
 
@@ -23,6 +22,29 @@ async def on_message(message):
     tx = ['mrow mrow', 'prrrprprrrr', ':3', 'hissssss']
     await message.channel.send(random.choice(tx))
 
+  if message.content.startswith("!spr predict"):
+    ch = [0]
+    for i in range(100):
+      ch.append(i)
+    await message.reply(f"according to me the chances are {random.choice(ch)}%"
+                        )
+
+  if message.content.startswith("!spr mm"):
+    ch = [0]
+    for i in range(100):
+      ch.append(i)
+    r = random.choice(ch)
+    await message.reply(f"the ship compatibility is {r}%")
+    if (r < 30):
+      await message.channel.send("F bro. maybe someone else?")
+    elif (r < 60):
+      await message.channel.send("it will take work, but u can do it")
+    elif (r < 90):
+      await message.channel.send("uff get a room")
+    else:
+      await message.channel.send(
+        "woah. i give u permission to sin ultra pro max: hold hands")
+
   if 'pspsps' in message.content.lower():
     await message.channel.send(
       'https://tenor.com/view/sprigatito-cat-pokemon-gif-25462173')
@@ -38,7 +60,6 @@ async def on_message(message):
   if 'weed' in message.content.lower():
     await message.channel.send(
       'https://tenor.com/view/sprigatito-pokemon-weed-cat-gif-25019907')
-
 
   match = re.findall("rock|paper|scissors",
                      message.content,
@@ -58,7 +79,8 @@ async def on_message(message):
     ]
     await message.reply(f"i choose {sprich}!!!")
     if player == sprich:
-      await message.channel.send("it's tied up!! like ur mom was last night :3")
+      await message.channel.send("it's tied up!! like ur mom was last night :3"
+                                 )
     elif player == "rock" and sprich == "scissors":
       await message.channel.send(random.choice(w))
     elif player == "paper" and sprich == "rock":
@@ -85,6 +107,7 @@ async def on_message(message):
     await message.channel.send(
       'https://tenor.com/view/pokemon-pokemon-scarlet-and-violet-pokemon-scarlet-pokemon-violet-sprigatito-gif-25833283'
     )
+
 
 aliv()
 client.run(os.environ['token'])
